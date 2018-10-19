@@ -1,4 +1,6 @@
 package com.cg.banking.beans;
+import javax.persistence.Embeddable;
+@Embeddable
 public class Address {
 	private int pinCode;
 	private String city ,state , country;

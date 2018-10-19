@@ -13,8 +13,9 @@ public class MainClass {
 		associate = associateDAO.save(associate);
 		System.out.println(associate.toString());
 		/*associate = new Associate("Sushant", "Dey", "sushant@gmail.com", "Sr. analyst");
-		associate = associateDAO.save(associate);
+		associate = associateDAO.save(associate);*/
 		List<Associate> associates = associateDAO.findAll();
-		System.out.println(associates.toString());*/
+		System.out.println(associates.toString());
+		associates = associateDAO.findFewAssociate(20000);
 	}
 }

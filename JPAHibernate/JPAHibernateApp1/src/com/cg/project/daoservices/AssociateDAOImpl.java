@@ -22,7 +22,7 @@ public class AssociateDAOImpl implements AssociateDAO{
 	public boolean update(Associate associate) {
 		EntityManager entityManager = factory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(associate);
+		entityManager.merge(associate);
 		entityManager.getTransaction().commit();
 		entityManager.close();
 		return true;
@@ -35,7 +35,17 @@ public class AssociateDAOImpl implements AssociateDAO{
 	@Override
 	public ArrayList<Associate> findAll() {
 		EntityManager entityManager=factory.createEntityManager();
-		Query query=entityManager.createQuery("from Associate a");
+		Query query=entityManager.createNamedQuery("getAllAssociate");
+		@SuppressWarnings("unchecked")
+		ArrayList<Associate> list=(ArrayList<Associate>)query.getResultList();
+		return list;
+	}
+	@Override
+	public ArrayList<Associate> findFewAssociate(int yearlyInvestmentUnder80C) {
+		EntityManager entityManager=factory.createEntityManager();
+		Query query=entityManager.createNamedQuery("getFewAssociate");
+		query.setParameter("yearlyInvestmentUnder80C", yearlyInvestmentUnder80C);
+		@SuppressWarnings("unchecked")
 		ArrayList<Associate> list=(ArrayList<Associate>)query.getResultList();
 		return list;
 	}
